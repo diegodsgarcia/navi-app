@@ -24,7 +24,8 @@
       "favicon": "./src/assets/favicon.png"
     },
     "android": {
-      "package": "io.test.navi"
+      "package": "io.test.navi",
+      "googleServicesFile": "./google-services.json"
     }
   }
 }
