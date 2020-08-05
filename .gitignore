@@ -9,5 +9,8 @@ npm-debug.*
 *.orig.*
 web-build/
 
+# Android
+google-services.json
+
 # macOS
 .DS_Store
