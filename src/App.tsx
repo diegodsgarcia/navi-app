@@ -44,20 +44,17 @@ const App = () => {
     console.log(notification)
   }
 
-  const sendRequestNotification = (to: string) => {
+  const sendRequestNotification = (request: {to: string, title: string, body: string}) => {
     setOpenModal(false)
-    api.post('/send', {
-      to,
-      title: 'Heeey!',
-      body: 'Listen...'
-    })
+    api.post('/send', request)
   }
 
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Modal 
-        visible={openModal} 
+      <Modal
+        visible={openModal}
+        token={token.expoPushToken}
         onRequestClose={() => setOpenModal(false)}
         onRequestSend={sendRequestNotification} 
       />
