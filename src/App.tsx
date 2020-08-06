@@ -12,6 +12,7 @@ import {
 
 import registerForPushNotificationsAsync from './service/registerForPushNotificationsAsync' 
 
+import Navi from './components/Navi'
 import Button from './components/Button'
 import Text from './components/Text'
 
@@ -42,6 +43,7 @@ const App = () => {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
+      <Navi />
       <Button>
         Hey!
       </Button>
