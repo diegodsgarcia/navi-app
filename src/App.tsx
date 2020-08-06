@@ -10,9 +10,11 @@ import {
   NotificationResponse,
 } from 'expo-notifications'
 
-import registerForPushNotificationsAsync from './service/registerForPushNotificationsAsync' 
+import registerForPushNotificationsAsync from './service/registerForPushNotificationsAsync'
+import api from './service/api' 
 
 import Navi from './components/Navi'
+import Modal from './components/Modal'
 import Button from './components/Button'
 import Text from './components/Text'
 
@@ -26,11 +28,13 @@ setNotificationHandler({
 
 const App = () => {
   const [token, setToken] = useState<{expoPushToken: string}>({expoPushToken: 'Listen...'})
+  const [openModal, setOpenModal] = useState(false)
+
   useEffect(() => {
     registerForPushNotificationsAsync().then(setToken)
     addNotificationReceivedListener(handleNotification)
     addNotificationResponseReceivedListener(handleNotificationResponse)
-  }, [token])
+  }, [])
 
   const handleNotification = (notification: Notification) => {
     console.log(notification)
@@ -40,11 +44,25 @@ const App = () => {
     console.log(notification)
   }
 
+  const sendRequestNotification = (to: string) => {
+    setOpenModal(false)
+    api.post('/send', {
+      to,
+      title: 'Heeey!',
+      body: 'Listen...'
+    })
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
+      <Modal 
+        visible={openModal} 
+        onRequestClose={() => setOpenModal(false)}
+        onRequestSend={sendRequestNotification} 
+      />
       <Navi />
-      <Button>
+      <Button onPress={() => setOpenModal(true)}>
         Hey!
       </Button>
       <Text>{token.expoPushToken}</Text>

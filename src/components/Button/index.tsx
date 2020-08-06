@@ -1,12 +1,13 @@
 import React from 'react'
-import { StyleSheet, TouchableOpacity, Text } from 'react-native'
+import { StyleSheet, TouchableOpacity, Text, GestureResponderEvent } from 'react-native'
 
 type Props = {
-  children: React.ReactNode
+  children: React.ReactNode,
+  onPress?: (event: GestureResponderEvent) => void | undefined
 }
 
-const Button = ({ children }: Props) => (
-  <TouchableOpacity style={styles.container}>
+const Button = ({ children, onPress }: Props) => (
+  <TouchableOpacity onPress={onPress} style={styles.container}>
     <Text style={styles.text}>{children}</Text>
   </TouchableOpacity>
 )

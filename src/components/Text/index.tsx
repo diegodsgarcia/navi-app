@@ -6,7 +6,7 @@ type Props = {
 }
 
 export default ({ children }: Props) => (
-  <Text style={styles.text}>{children}</Text>
+  <Text selectable style={styles.text}>{children}</Text>
 )
 
 const styles = StyleSheet.create({
