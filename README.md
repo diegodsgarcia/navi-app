@@ -1,25 +1,22 @@
-<h1 align="center">Navi Notification App</h1>
+<h1 align="center">Navi Expo Manage</h1>
 
 <p align="center">
   <img src="src/assets/navi.png">
 </p>
 
-## How to run
+### Vantagens
 
-### Android
+- Configuração unica para ambas plataforma (iOS/ Android)
+- API HTTP para realização de requisições de notificações
 
-Create a account in [Firebase](https://console.firebase.google.com/)
+### Desvantagens
 
-Add the same name of package in firebase project in `app.json` (download in Firebase Console)
+- Ficar dependete da API de notificações do Expo
+- Não é possivel debugar pelo portal FCM nem pelo emulador
+- É necessário obrigatoriamente utilizar o serviço FCM para android e o APNS para iOS
 
-Add file `google-service.json` in your project
+### Arquitetura
+![Arquitetura Expo Manage](https://docs.expo.io/static/images/sending-notification.png)
 
-Build your project
-```
-expo build:android
-```
-
-Publish 
-```
-expo push:android:publish --api-key <API_KEY>
-```
+### Plataforma de notificações para testes
+- [https://expo.io/notifications](https://expo.io/notifications)
