@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { registerRootComponent } from 'expo'
 import { StatusBar } from 'expo-status-bar'
@@ -13,6 +13,7 @@ import {
 import registerForPushNotificationsAsync from './service/registerForPushNotificationsAsync' 
 
 import Button from './components/Button'
+import Text from './components/Text'
 
 setNotificationHandler({
   handleNotification: async () => ({
@@ -23,11 +24,12 @@ setNotificationHandler({
 })
 
 const App = () => {
+  const [token, setToken] = useState<{expoPushToken: string}>({expoPushToken: 'Listen...'})
   useEffect(() => {
-    registerForPushNotificationsAsync()
+    registerForPushNotificationsAsync().then(setToken)
     addNotificationReceivedListener(handleNotification)
     addNotificationResponseReceivedListener(handleNotificationResponse)
-  }, [])
+  }, [token])
 
   const handleNotification = (notification: Notification) => {
     console.log(notification)
@@ -43,6 +45,7 @@ const App = () => {
       <Button>
         Hey!
       </Button>
+      <Text>{token.expoPushToken}</Text>
     </View>
   )
 }
