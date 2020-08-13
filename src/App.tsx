@@ -10,8 +10,7 @@ import {
   NotificationResponse,
 } from 'expo-notifications'
 
-import registerForPushNotificationsAsync from './service/registerForPushNotificationsAsync'
-import api from './service/api' 
+import { registerForPushNotificationsAsync, sendNotification } from './service/notifications'
 
 import Navi from './components/Navi'
 import Modal from './components/Modal'
@@ -44,9 +43,9 @@ const App = () => {
     console.log(notification)
   }
 
-  const sendRequestNotification = (request: {to: string, title: string, body: string}) => {
+  const sendRequestNotification = (body: {to: string, title: string, body: string}) => {
     setOpenModal(false)
-    api.post('/send', request)
+    sendNotification(body)
   }
 
   return (
